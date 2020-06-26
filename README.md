@@ -1,2 +1,2 @@
 # news
-sites for all news using API
+site for all news using API
