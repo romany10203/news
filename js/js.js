@@ -1,23 +1,23 @@
 
 
 let req = new XMLHttpRequest();
-let term;
-var news;
+let news;
 let country = "eg";
 let category = "general";
 let searchInp = document.getElementById("searchInp");
 let searchBtn = document.getElementById("searchBtn");
 let link;
-var temp;
-var links = document.getElementsByClassName("nav-link");
+let temp;
+let links = document.getElementsByClassName("nav-link");
 let countries = document.getElementById("countries");
 
-link = "http://newsapi.org/v2/top-headlines?country="+country+"&category="+category+"&apiKey=7ad0212514724cb29a48d475b0f1ce71";
+link = `https://cors-anywhere.herokuapp.com/newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
 getData();
 
 
 function getData()
 {    
+/*
     req.open("GET",link);
 
     req.onreadystatechange = function()
@@ -31,6 +31,14 @@ function getData()
     }
     
     req.send();
+*/
+axios.get(link).then(function (response) {
+    // handle success
+    console.log(response.data);
+    news = response.data.articles;
+    displayNews();
+  })
+
 }
 
 
@@ -42,10 +50,10 @@ function displayNews()
     {
         temp += `<div class="col-md-3 my-1">
                     <div class="new p-2">
-                        <img srs=`+news[i].urlToImage+` class="img-fluid"/>
-                        <h5>`+news[i].title+`</h5>
-                        <p class="text-muted">`+news[i].description+`</p>
-                        <a href=`+news[i].url+`>Read more...</a>
+                        <img src=${news[i].urlToImage} class="img-fluid"/>
+                        <h5 style="text-align: right; direction:rtl">${news[i].title}</h5>
+                        <p class="text-muted" style="text-align: right; direction:rtl">${news[i].description}</p>
+                        <a style="text-decoration: none;background-color: #007bff;text-align: center;padding: 7px;color: white;" href=${news[i].url}target="_blank">Read more...</a>
                     </div>
                 </div>`;
     }
@@ -57,7 +65,7 @@ for(let i = 0 ; i < links.length ; i++)
     links[i].addEventListener("click",function(e){
 
         category = e.target.innerHTML;
-        link = "http://newsapi.org/v2/top-headlines?country="+country+"&category="+category+"&apiKey=7ad0212514724cb29a48d475b0f1ce71";
+        link = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
         getData();
     })
 }
@@ -65,13 +73,13 @@ for(let i = 0 ; i < links.length ; i++)
 
 searchInp.addEventListener("keyup",function(e){
 
-    link = "http://newsapi.org/v2/everything?q="+this.value+"&from=2020-05-26&sortBy=publishedAt&apiKey=7ad0212514724cb29a48d475b0f1ce71";
+    link = `http://newsapi.org/v2/everything?q=${this.value}&from=2020-05-26&sortBy=publishedAt&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
     getData();
 })
 
 countries.addEventListener("change",function(e){
 
     country = this.value;
-    link = "http://newsapi.org/v2/top-headlines?country="+country+"&category="+category+"&apiKey=7ad0212514724cb29a48d475b0f1ce71";
+    link = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
     getData();
 })
