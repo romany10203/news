@@ -42,7 +42,7 @@ function displayNews()
     {
         temp += `<div class="col-md-3 my-1">
                     <div class="new p-2">
-                        <img scr=`+news[i].urlToImage+` class="img-fluid"/>
+                        <img srs=`+news[i].urlToImage+` class="img-fluid"/>
                         <h5>`+news[i].title+`</h5>
                         <p class="text-muted">`+news[i].description+`</p>
                         <a href=`+news[i].url+`>Read more...</a>
