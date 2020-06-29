@@ -20,7 +20,7 @@ let countryArr = [
 let links = document.getElementsByClassName("nav-link");
 let countries = document.getElementById("countries");
 
-link = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
+link = `https://cors-anywhere.herokuapp.com/newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
 getData();
 
 
@@ -74,7 +74,7 @@ for(let i = 0 ; i < links.length ; i++)
     links[i].addEventListener("click",function(e){
 
         category = e.target.innerHTML;
-        link = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
+        link = `https://cors-anywhere.herokuapp.com/newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
         getData();
     })
 }
@@ -82,13 +82,13 @@ for(let i = 0 ; i < links.length ; i++)
 
 searchInp.addEventListener("keyup",function(e){
 
-    link = `http://newsapi.org/v2/everything?q=${this.value}&from=2020-05-28&sortBy=publishedAt&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
+    link = `https://cors-anywhere.herokuapp.com/newsapi.org/v2/everything?q=${this.value}&from=2020-05-28&sortBy=publishedAt&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
     getData();
 })
 
 countries.addEventListener("change",function(e){
 
     country = this.value;
-    link = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
+    link = `https://cors-anywhere.herokuapp.com/newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=7ad0212514724cb29a48d475b0f1ce71`;
     getData();
 })
